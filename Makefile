@@ -6,32 +6,42 @@
 #    By: cnysten <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/11 14:35:20 by cnysten           #+#    #+#              #
-#    Updated: 2022/01/11 14:48:11 by cnysten          ###   ########.fr        #
+#    Updated: 2022/01/17 18:13:12 by cnysten          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Set your ft_printf path
-FT_PRINTF_PATH = ../ft_printf/
+FT_PRINTF_PATH = ../ft_printf
 
 NAME = test_printf
 
-SRCS = main.c
+FT_SRCS = $(FT_PRINTF_PATH)/ft_printf.c
 
-OBJS = $(srcs:%.c=%.o)
+TEST_SRCS = main.c \
+	   redirection.c
 
-CFLAGS = -Wall -Wextra -Werror -g
+TEST_OBJS = $(TEST_SRCS:%.c=%.o)
+
+FT_OBJS = $(FT_SRCS:%.c=%.o)
+
+CFLAGS = -Wall -Wextra -Werror -g -I$(FT_PRINTF_PATH)
 
 all: $(NAME)
 
-$(NAME):
+$(FT_OBJS): $(FT_SRCS)
 	make -C $(FT_PRINTF_PATH)
-	gcc $(CFLAGS) -c $(SRCS)
-	gcc $(CFLAGS) -o $(NAME) $(OBJS)
+
+$(NAME): $(FT_OBJS)
+	#make -C $(FT_PRINTF_PATH)
+	gcc $(CFLAGS) -c $(TEST_SRCS)
+	gcc $(CFLAGS) -o $(NAME) $(TEST_OBJS) $(FT_OBJS)
 
 clean:
-	rm -f $(OBJS)
+	rm -f $(TEST_OBJS)
 	make -C $(FT_PRINTF_PATH) clean
 
-fclean:
+fclean: clean
 	rm -f $(NAME)
 	make -C $(FT_PRINTF_PATH) fclean
+
+re: fclean all
