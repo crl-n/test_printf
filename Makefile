@@ -26,6 +26,9 @@ FT_OBJS = $(FT_SRCS:%.c=%.o)
 
 CFLAGS = -Wall -Wextra -Werror -g -I$(FT_PRINTF_PATH)
 
+argp: arg_printer.c
+	gcc -o argp arg_printer.c
+
 all: $(NAME)
 
 $(FT_OBJS): $(FT_SRCS)
