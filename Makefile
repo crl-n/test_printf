@@ -6,7 +6,7 @@
 #    By: cnysten <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/11 14:35:20 by cnysten           #+#    #+#              #
-#    Updated: 2022/01/17 18:13:12 by cnysten          ###   ########.fr        #
+#    Updated: 2022/01/18 16:02:32 by cnysten          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ FT_PRINTF_PATH = ../ft_printf
 
 NAME = test_printf
 
-FT_SRCS = $(FT_PRINTF_PATH)/ft_printf.c
+FT_SRCS = $(FT_PRINTF_PATH)/ft_printf.c $(FT_PRINTF_PATH)/ptoa.c
 
 TEST_SRCS = main.c \
 	   redirection.c
