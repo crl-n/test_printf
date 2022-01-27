@@ -6,7 +6,7 @@
 /*   By: cnysten <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 14:48:16 by cnysten           #+#    #+#             */
-/*   Updated: 2022/01/27 11:23:30 by cnysten          ###   ########.fr       */
+/*   Updated: 2022/01/27 12:39:56 by cnysten          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static void	banner(void)
 int	main(void)
 {
 	banner();
+	general_tests();
 	c_tests();
 	s_tests();
 	p_tests();

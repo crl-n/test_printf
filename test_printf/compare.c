@@ -6,7 +6,7 @@
 /*   By: cnysten <cnysten@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 11:07:25 by cnysten           #+#    #+#             */
-/*   Updated: 2022/01/27 11:28:28 by cnysten          ###   ########.fr       */
+/*   Updated: 2022/01/27 12:26:28 by cnysten          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	compare_output(void)
 	ssize_t	linelen_orig = 0;
 	char	*line_ft = NULL;
 	char	*line_orig = NULL;
+	int		ret = 1;
+
 	if (!stream)
 		return (1);
 	while (1)
@@ -32,7 +34,10 @@ int	compare_output(void)
 		if (linelen_orig <= 0 || linelen_ft <= 0)
 			break ;
 		if (strcmp(line_ft, line_orig))
+		{
 			printf("%s != %s\n", line_ft, line_orig);
+			ret = 0;
+		}
 	}
-	return (0);
+	return (ret);
 }

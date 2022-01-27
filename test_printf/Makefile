@@ -6,7 +6,7 @@
 #    By: cnysten <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/11 14:35:20 by cnysten           #+#    #+#              #
-#    Updated: 2022/01/27 11:27:14 by cnysten          ###   ########.fr        #
+#    Updated: 2022/01/27 12:47:11 by cnysten          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ FT_PRINTF_A = $(FT_PRINTF_PATH)/libftprintf.a
 TEST_SRCS = main.c \
 			redirection.c \
 			compare.c \
+			general_tests.c \
 			csp_tests.c
 
 TEST_OBJS = $(TEST_SRCS:%.c=%.o)

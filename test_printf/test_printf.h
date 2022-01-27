@@ -6,7 +6,7 @@
 /*   By: cnysten <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 14:54:24 by cnysten           #+#    #+#             */
-/*   Updated: 2022/01/27 11:25:46 by cnysten          ###   ########.fr       */
+/*   Updated: 2022/01/27 12:41:08 by cnysten          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 int		compare_output(void);
 int		redirect_stdout(char *filename, int *saved_stdout, int *fd);
 void	restore_stdout(int	saved_stdout, int fd);
+
+void	general_tests(void);
 void	c_tests(void);
 void	s_tests(void);
 void	p_tests(void);
