@@ -6,7 +6,7 @@
 /*   By: cnysten <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 14:48:16 by cnysten           #+#    #+#             */
-/*   Updated: 2022/01/17 18:12:34 by cnysten          ###   ########.fr       */
+/*   Updated: 2022/01/27 10:13:53 by cnysten          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,14 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
+
+static void	banner(void)
+{
+	printf("********************************************************************************\n");
+	printf("%35s\n", "test_printf");
+	printf("********************************************************************************\n");
+
+}
 
 int	compare_output(void)
 {
@@ -47,6 +55,7 @@ int	main(void)
 	int	saved_stdout;
 	char	*s1 = strdup("hello world");
 
+	banner();
 	if (redirect_stdout("output", &saved_stdout, &fd) < 0)
 		return (1);
 	ft_printf("%s\n", s1);
