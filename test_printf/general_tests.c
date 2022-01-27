@@ -6,7 +6,7 @@
 /*   By: cnysten <cnysten@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 12:40:09 by cnysten           #+#    #+#             */
-/*   Updated: 2022/01/27 23:36:47 by carlnysten       ###   ########.fr       */
+/*   Updated: 2022/01/27 23:55:02 by carlnysten       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,35 @@ void	general_tests(void)
 		printf("✔︎ Works with multiple conversions of different types\n");
 	else
 		printf("× Doesn't work well with multiple conversions of different types\n");
+
+	/* Test empty format string */
+	if (redirect_stdout("output", &saved_stdout, &fd) < 0)
+		return ;
+	ft_printf("");
+	printf("\n");
+	printf("");
+	printf("\n");
+	fflush(NULL);
+
+	restore_stdout(saved_stdout, fd);
+	if (compare_output())
+		printf("✔︎ Parser can handle empty format string\n");
+	else
+		printf("× Parser can't handle empty format string\n");
+
+
+	/* Test %% */
+	if (redirect_stdout("output", &saved_stdout, &fd) < 0)
+		return ;
+	ft_printf("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n");
+	printf("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n");
+	fflush(NULL);
+
+	restore_stdout(saved_stdout, fd);
+	if (compare_output())
+		printf("✔︎ Parser can handle %%%%\n");
+	else
+		printf("× Parser can't handle %%%%\n");
 
 	/* Multiple directives with multiple flags and %% */
 	if (redirect_stdout("output", &saved_stdout, &fd) < 0)
