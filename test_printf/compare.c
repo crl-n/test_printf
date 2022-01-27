@@ -6,7 +6,7 @@
 /*   By: cnysten <cnysten@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 11:07:25 by cnysten           #+#    #+#             */
-/*   Updated: 2022/01/27 12:26:28 by cnysten          ###   ########.fr       */
+/*   Updated: 2022/01/27 22:51:58 by carlnysten       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	compare_output(void)
 			break ;
 		if (strcmp(line_ft, line_orig))
 		{
-			printf("%s != %s\n", line_ft, line_orig);
+			printf("%s !=\n%s\n", line_ft, line_orig);
 			ret = 0;
 		}
 	}

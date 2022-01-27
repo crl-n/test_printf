@@ -6,7 +6,7 @@
 #    By: cnysten <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/11 14:35:20 by cnysten           #+#    #+#              #
-#    Updated: 2022/01/27 12:47:11 by cnysten          ###   ########.fr        #
+#    Updated: 2022/01/27 23:02:07 by carlnysten       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,9 @@ TEST_SRCS = main.c \
 			redirection.c \
 			compare.c \
 			general_tests.c \
-			csp_tests.c
+			csp_tests.c \
+			i_tests.c \
+			f_tests.c
 
 TEST_OBJS = $(TEST_SRCS:%.c=%.o)
 
@@ -56,10 +58,12 @@ $(NAME): $(TEST_OBJS) $(FT_PRINTF_A)
 
 clean:
 	rm -f $(TEST_OBJS)
+	rm -f output
 	make -C $(FT_PRINTF_PATH) clean
 
 fclean: clean
 	rm -f $(NAME)
+	rm -rf $(NAME).dSYM
 	make -C $(FT_PRINTF_PATH) fclean
 
 re: fclean all

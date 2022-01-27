@@ -6,7 +6,7 @@
 /*   By: cnysten <cnysten@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 12:40:09 by cnysten           #+#    #+#             */
-/*   Updated: 2022/01/27 12:49:50 by cnysten          ###   ########.fr       */
+/*   Updated: 2022/01/27 23:36:47 by carlnysten       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,22 @@ void	general_tests(void)
 		printf("✔︎ Works with multiple conversions of different types\n");
 	else
 		printf("× Doesn't work well with multiple conversions of different types\n");
+
+	/* Multiple directives with multiple flags and %% */
+	if (redirect_stdout("output", &saved_stdout, &fd) < 0)
+		return ;
+
+	ft_printf("%15scspdiouxXf%-15s\n", "abc", "def");
+	printf("%15scspdiouxXf%-15s\n", "abc", "def");
+	fflush(NULL);
+
+	ft_printf("%% %%%1iiii%+0i1 %001i- #+i%011i- #%%%%\n", 123, 456, 789, 0);
+	printf("%% %%%1iiii%+0i1 %001i- #+i%011i- #%%%%\n", 123, 456, 789, 0);
+	fflush(NULL);
+
+	restore_stdout(saved_stdout, fd);
+	if (compare_output())
+		printf("✔︎ Parser can handle complicated input\n");
+	else
+		printf("× Parser can't handle complicated input\n");
 }
