@@ -6,7 +6,7 @@
 /*   By: cnysten <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 14:48:16 by cnysten           #+#    #+#             */
-/*   Updated: 2022/01/27 12:39:56 by cnysten          ###   ########.fr       */
+/*   Updated: 2022/01/27 22:03:22 by carlnysten       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,7 @@ int	main(void)
 	c_tests();
 	s_tests();
 	p_tests();
+	i_tests();
+	f_tests();
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: cnysten <cnysten@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 11:08:45 by cnysten           #+#    #+#             */
-/*   Updated: 2022/01/27 12:50:12 by cnysten          ###   ########.fr       */
+/*   Updated: 2022/01/27 22:01:50 by carlnysten       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,18 +69,21 @@ void	s_tests(void)
 	printf(CYAN"\ns-conversion\n"RESET);
 	fflush(NULL);
 
+	/* Basic string tests */
 	if (redirect_stdout("output", &saved_stdout, &fd) < 0)
 		return ;
 	ft_printf("%s\n", s1);
 	printf("%s\n", s1);
 	fflush(NULL);
-	ft_printf("%s\n", "buu");
-	printf("%s\n","baa");
+	ft_printf("%s\n", "zbAdsljdkk1234lsa");
+	printf("%s\n","zbAdsljdkk1234lsa");
 	fflush(NULL);
 	restore_stdout(saved_stdout, fd);
 	free(s1);
 	if (compare_output())
-		return ;
+		printf("✔︎ Works with simple strings\n");
+	else
+		printf("× Doesn't work with simple strings\n");
 }
 
 void	p_tests(void)
@@ -92,6 +95,7 @@ void	p_tests(void)
 	printf(CYAN"\np-conversion\n"RESET);
 	fflush(NULL);
 
+	/* Test with allocated string */
 	if (redirect_stdout("output", &saved_stdout, &fd) < 0)
 		return ;
 	ft_printf("%p\n", s1);
@@ -100,5 +104,19 @@ void	p_tests(void)
 	restore_stdout(saved_stdout, fd);
 	free(s1);
 	if (compare_output())
+		printf("✔︎ Works with allocated string\n");
+	else
+		printf("× Doesn't work with allocated string\n");
+
+	/* Test with null */
+	if (redirect_stdout("output", &saved_stdout, &fd) < 0)
 		return ;
+	ft_printf("%p\n", NULL);
+	printf("%p\n", NULL);
+	fflush(NULL);
+	restore_stdout(saved_stdout, fd);
+	if (compare_output())
+		printf("✔︎ Works with NULL\n");
+	else
+		printf("× Doesn't work with NULL\n");
 }
