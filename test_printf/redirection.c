@@ -6,17 +6,36 @@
 /*   By: cnysten <cnysten@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:08:31 by cnysten           #+#    #+#             */
-/*   Updated: 2022/01/17 15:46:57 by cnysten          ###   ########.fr       */
+/*   Updated: 2022/01/27 11:44:34 by cnysten          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include <unistd.h>
+#include <stdlib.h>
+#include <string.h>
+
+int	remove_prev_output(char *filename)
+{
+	char	*cmd;
+
+	if (!filename)
+		return (-1);
+	cmd = (char *) calloc(7 + strlen(filename), sizeof (char));
+	if (!cmd)
+		return (-1);
+	strcat(cmd, "rm -f ");
+	strcat(cmd, filename);
+	system(cmd);
+	free(cmd);
+	return (0);
+}
 
 int	redirect_stdout(char *filename, int *saved_stdout, int *fd)
 {
 	if (!filename)
 		return (-1);
+	remove_prev_output(filename);
 	*saved_stdout = dup(STDOUT_FILENO);
 	if (*saved_stdout < 0)
 		return (-1);
