@@ -6,7 +6,7 @@
 /*   By: carlnysten <cnysten@student.hive.fi>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 22:04:06 by carlnysten        #+#    #+#             */
-/*   Updated: 2022/01/27 22:57:32 by carlnysten       ###   ########.fr       */
+/*   Updated: 2022/01/28 10:34:50 by carlnysten       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,10 @@ void	f_tests(void)
 		i++;
 	}
 	free(format);
+
+	ft_printf("%.19f\n", 9.9999999999999999999999999);
+	printf("%.19f\n", 9.9999999999999999999999999);
+	fflush(NULL);
 
 	restore_stdout(saved_stdout, fd);
 	if (compare_output())
