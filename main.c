@@ -2,6 +2,8 @@
 #include "test_printf.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <float.h>
+#include <limits.h>
 
 #define SRCLINE strstr(src_code[__LINE__], "TEST")
 
@@ -26,7 +28,7 @@ static void	banner(void)
 int	main(void)
 {
 	FILE	*file = fopen(filename, "r");
-	char	*src_code[256];
+	char	*src_code[512];
 	char	*line = NULL;
 	size_t	linecap = 0;
 	int		i = 1;
@@ -76,6 +78,7 @@ int	main(void)
 	TEST("%1s", "Right");
 	TEST("%-1s", "Left");
 	TEST("%s", "");
+	TEST("%.4s", "Half not whole");
 
 	printf(CYAN"\033[1mPointer conversion\033[0m\n"RESET);
 	LABELS;
@@ -95,10 +98,17 @@ int	main(void)
 	TEST("%-10d", 2);
 	TEST("%10.2d", 3);
 	TEST("%-10.2d", 4);
+	TEST("%010d", 5);
+	TEST("%010.2d", 6);
+	TEST("%0.0d", 7);
 	TEST("%hhd", (signed char) 42);
 	TEST("%hhd", (signed char) -42);
 	TEST("%hd", (short) 1000);
 	TEST("%hd", (short) -1000);
+	TEST("%ld", LONG_MAX);
+	TEST("%ld", LONG_MIN);
+	TEST("%lld", LLONG_MAX);
+	TEST("%lld", LLONG_MIN);
 
 	printf(CYAN"\033[1mOctal conversion\033[0m\n"RESET);
 	LABELS;
@@ -110,11 +120,82 @@ int	main(void)
 	TEST("%-10o", 2);
 	TEST("%10.2o", 3);
 	TEST("%-10.2o", 4);
+	TEST("%010o", 5);
+	TEST("%010.2o", 6);
+	TEST("%0.0o", 7);
+	TEST("%#o", 8);
 	TEST("%hho", (unsigned char) 42);
-	TEST("%ho", (short) 1000);
+	TEST("%ho", (unsigned short) 1000);
+	TEST("%lo", ULONG_MAX);
+	TEST("%lo", 0UL);
+	TEST("%llo", ULLONG_MAX);
+	TEST("%llo", 0ULL);
+
+	printf(CYAN"\033[1mUnsigned conversion\033[0m\n"RESET);
+	LABELS;
+	TEST("%u", 0);
+	TEST("%u", 1);
+	TEST("%u", -1);
+	TEST("%u %u %u %u", 6U, 7U, 8U, 9U);
+	TEST("%10u", 1U);
+	TEST("%-10u", 2U);
+	TEST("%10.2u", 3U);
+	TEST("%-10.2u", 4U);
+	TEST("%010u", 5U);
+	TEST("%010.2u", 6U);
+	TEST("%0.0u", 7U);
+	TEST("%hhu", (unsigned char) 42);
+	TEST("%hu", (unsigned short) 1000);
+	TEST("%lu", ULONG_MAX);
+	TEST("%lu", 0UL);
+	TEST("%llu", ULLONG_MAX);
+	TEST("%llu", 0ULL);
+
+	printf(CYAN"\033[1mHex (lower) conversion\033[0m\n"RESET);
+	LABELS;
+	TEST("%x", 0);
+	TEST("%x", 1);
+	TEST("%x", -1);
+	TEST("%x %x %x %x", 14, 15, 16, 17);
+	TEST("%10x", 42);
+	TEST("%-10x", 42);
+	TEST("%10.2x", 21);
+	TEST("%-10.2x", 21);
+	TEST("%010x", 42);
+	TEST("%010.2x", 21);
+	TEST("%0.0o", 0);
+	TEST("%#x", 8);
+	TEST("%hhx", (unsigned char) 42);
+	TEST("%hx", (unsigned short) 1000);
+	TEST("%lx", ULONG_MAX);
+	TEST("%lx", 0UL);
+	TEST("%llx", ULLONG_MAX);
+	TEST("%llx", 0ULL);
+
+	printf(CYAN"\033[1mHeX (upper) conversion\033[0m\n"RESET);
+	LABELS;
+	TEST("%X", 0);
+	TEST("%X", 1);
+	TEST("%X", -1);
+	TEST("%X %X %X %X", 14, 15, 16, 17);
+	TEST("%10X", 42);
+	TEST("%-10X", 42);
+	TEST("%10.2X", 21);
+	TEST("%-10.2X", 21);
+	TEST("%010X", 42);
+	TEST("%010.2X", 21);
+	TEST("%#X", 8);
+	TEST("%hhX", (unsigned char) 42);
+	TEST("%hX", (unsigned short) 1000);
+	TEST("%lX", ULONG_MAX);
+	TEST("%lX", 0UL);
+	TEST("%llX", ULLONG_MAX);
+	TEST("%llX", 0ULL);
 
 	printf(CYAN"\033[1mFloat conversion ☠️ \033[0m\n"RESET);
 	LABELS;
+	TEST("%f", FLT_MIN);
+	TEST("%f", FLT_MAX);
 	TEST("%f", -0.0);
 	TEST("%f", 0.0);
 	TEST("%+f", -0.0);
