@@ -6,7 +6,7 @@
 /*   By: carlnysten <cnysten@student.hive.fi>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 22:04:06 by carlnysten        #+#    #+#             */
-/*   Updated: 2022/01/28 10:34:50 by carlnysten       ###   ########.fr       */
+/*   Updated: 2022/02/14 22:15:59 by carlnysten       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,9 @@ void	f_tests(void)
 
 	ft_printf("%.19f\n", 9.9999999999999999999999999);
 	printf("%.19f\n", 9.9999999999999999999999999);
+
+	ft_printf("%.f %.f %.f", 0.5, 1.5, 2.5);
+	printf("%.f %.f %.f", 0.5, 1.5, 2.5);
 	fflush(NULL);
 
 	restore_stdout(saved_stdout, fd);
@@ -79,4 +82,20 @@ void	f_tests(void)
 	else
 		printf("× Precision doesn't work well\n");
 
+	/* Combination tests */
+	if (redirect_stdout("output", &saved_stdout, &fd) < 0)
+		return ;
+	
+	ft_printf("%15f\n", 1.23);
+	printf("%15f\n", 1.23);
+
+	ft_printf("{%#- 10.5f}\n", 12.34);
+	printf("{%#- 10.5f}\n", 12.34);
+	fflush(NULL);
+
+	restore_stdout(saved_stdout, fd);
+	if (compare_output())
+		printf("✔︎ Float conversion works with flags and field width\n");
+	else
+		printf("× Float conversion doesn't work in combination with flags and/or field width\n");
 }
