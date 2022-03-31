@@ -28,7 +28,7 @@ static void	banner(void)
 int	main(void)
 {
 	FILE	*file = fopen(filename, "r");
-	char	*src_code[512];
+	static char	*src_code[512];
 	char	*line = NULL;
 	size_t	linecap = 0;
 	int		i = 1;
@@ -56,6 +56,7 @@ int	main(void)
 		}
 		line = NULL;
 	}
+	free(line);
 
 	fclose(file);
 
@@ -217,6 +218,7 @@ int	main(void)
 	printf(CYAN"\033[1mNan and inf\033[0m\n"RESET);
 	LABELS;
 	TEST("%f", 0.0 / 0.0);
+	TEST("%f", -0.0 / 0.0);
 	TEST("%.2f", 0.0 / 0.0);
 	TEST("%.0f", 0.0 / 0.0);
 	TEST("%010f", 0.0 / 0.0);
@@ -251,5 +253,16 @@ int	main(void)
 	TEST("%.2f", 1.365);
 	TEST("%10.1f", 0.05);
 	TEST("%10.1f", -0.05);
+	TEST("%10.1Lf", 0.05l);
+	TEST("%10.1Lf", -0.05l);
+	TEST("%10.2f", 0.005);
+	TEST("%10.2f", -0.005);
+	TEST("%10.1f", 0.04);
+	TEST("%10.1f", -0.04);
+	TEST("%10.1Lf", 0.04l);
+	TEST("%10.1Lf", -0.04l);
+
+	for (int k = 0; src_code[k]; k++)
+		free(src_code[k]);
 	return (0);
 }

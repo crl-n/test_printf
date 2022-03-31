@@ -6,7 +6,7 @@
 #    By: cnysten <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/11 14:35:20 by cnysten           #+#    #+#              #
-#    Updated: 2022/03/30 17:46:48 by carlnysten       ###   ########.fr        #
+#    Updated: 2022/03/31 12:07:49 by cnysten          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ all: $(NAME)
 $(FT_PRINTF_A):
 	make -C $(FT_PRINTF_PATH)
 
-$(OBJ):
+$(OBJ): $(SRC)
 	gcc $(CFLAGS) -c $(SRC) $(INCL)
 
 $(NAME): $(OBJ) $(FT_PRINTF_A)
