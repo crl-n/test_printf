@@ -7,13 +7,13 @@
 
 #define SRCLINE strstr(src_code[__LINE__], "TEST")
 
-#define TEST(fmt, ...) printf("%-30sOrig: {", SRCLINE);\
+#define TEST(fmt, ...) printf("%-40sOrig: {", SRCLINE);\
 					   printf("}{%d}\n", printf(fmt, ##__VA_ARGS__));\
-					   printf("%-30sYour: {", "");\
+					   printf("%-40sYour: {", "");\
 					   fflush(stdout);\
 					   printf("}{%d}\n", ft_printf(fmt, ##__VA_ARGS__))
 
-#define LABELS printf("\033[1m%-30s%13s\n\033[0m", "Format", "Output / Return")
+#define LABELS printf("\033[1m%-40s%13s\n\033[0m", "Format", "Output / Return")
 
 static const char	filename[] = "main.c";
 
@@ -144,6 +144,7 @@ int	main(void)
 	TEST("%010u", 5U);
 	TEST("%010.2u", 6U);
 	TEST("%0.0u", 7U);
+	TEST("%0.0u", 0);
 	TEST("%hhu", (unsigned char) 42);
 	TEST("%hu", (unsigned short) 1000);
 	TEST("%lu", ULONG_MAX);
@@ -195,24 +196,42 @@ int	main(void)
 	printf(CYAN"\033[1mFloat conversion ☠️ \033[0m\n"RESET);
 	LABELS;
 	TEST("%f", FLT_MIN);
-	TEST("%f", FLT_MAX);
+	//TEST("%f", FLT_MAX);
 	TEST("%f", -0.0);
 	TEST("%f", 0.0);
 	TEST("%+f", -0.0);
 	TEST("%+f", 0.0);
 	TEST("%#+f", -0.0);
 	TEST("%#+f", 0.0);
+
+	printf(CYAN"\033[1mNan and inf\033[0m\n"RESET);
+	LABELS;
 	TEST("%f", 0.0 / 0.0);
+	TEST("%.2f", 0.0 / 0.0);
+	TEST("%.0f", 0.0 / 0.0);
 	TEST("%010f", 0.0 / 0.0);
 	TEST("%+#0f", 0.0 / 0.0);
 	TEST("%10.1f", 0.0 / 0.0);
 	TEST("% f", 0.0 / 0.0);
 	TEST("%010f", 0.0 / 0.0);
+	TEST("%f", 1.0 / 0.0);
+	TEST("%010f", 1.0 / 0.0);
+	TEST("%+#0f", 1.0 / 0.0);
+	TEST("%10.1f", 1.0 / 0.0);
+	TEST("% f", 1.0 / 0.0);
+	TEST("%010f", 1.0 / 0.0);
+	TEST("%f", -1.0 / 0.0);
+	TEST("%010f", -1.0 / 0.0);
+	TEST("%+#0f", -1.0 / 0.0);
+	TEST("%10.1f", -1.0 / 0.0);
+	TEST("% f", -1.0 / 0.0);
+	TEST("%010f", -1.0 / 0.0);
 
 	printf(CYAN"\033[1mFloat rounding\033[0m\n"RESET);
 	LABELS;
 	TEST("%.0f", 99.5);
 	TEST("%.0f", 1.5);
+	TEST("%.0f", 0.5);
 	TEST("%.1f", 1.34);
 	TEST("%.1f", 1.35);
 	TEST("%.1f", 1.36);
