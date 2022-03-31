@@ -48,7 +48,7 @@ int	main(void)
 		if (semicolon)
 			*semicolon = '\0';
 		i++;
-		if (i == 256)
+		if (i == 512)
 		{
 			perror("Error: Source code array ran out of space.");
 			fclose(file);
@@ -60,6 +60,16 @@ int	main(void)
 	fclose(file);
 
 	banner();
+
+	printf(CYAN"\033[1mComplicated test\033[0m\n"RESET);
+	LABELS;
+	TEST("%c %i %c %d", 'c', 1, 'c', 2);
+
+	printf(CYAN"\033[1mPercentage conversion\033[0m\n"RESET);
+	LABELS;
+	TEST("%%");
+	TEST("%10%");
+	TEST("%0.0%");
 
 	printf(CYAN"\033[1mCharacter conversion\033[0m\n"RESET);
 	LABELS;
@@ -229,6 +239,7 @@ int	main(void)
 
 	printf(CYAN"\033[1mFloat rounding\033[0m\n"RESET);
 	LABELS;
+	TEST("%f", 0.999999999);
 	TEST("%.0f", 99.5);
 	TEST("%.0f", 1.5);
 	TEST("%.0f", 0.5);
@@ -238,5 +249,7 @@ int	main(void)
 	TEST("%.2f", 1.345);
 	TEST("%.2f", 1.355);
 	TEST("%.2f", 1.365);
+	TEST("%10.1f", 0.05);
+	TEST("%10.1f", -0.05);
 	return (0);
 }
