@@ -261,6 +261,7 @@ int	main(void)
 	TEST("%10.1f", -0.04);
 	TEST("%10.1Lf", 0.04l);
 	TEST("%10.1Lf", -0.04l);
+	TEST("%.15f", 454423.343242374423425);
 
 	for (int k = 0; src_code[k]; k++)
 		free(src_code[k]);
