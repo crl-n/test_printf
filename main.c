@@ -244,7 +244,6 @@ int	main(void)
 	TEST("%f", 0.999999999);
 	TEST("%.0f", 99.5);
 	TEST("%.0f", 1.5);
-	TEST("%.0f", 0.5);
 	TEST("%.1f", 1.34);
 	TEST("%.1f", 1.35);
 	TEST("%.1f", 1.36);
@@ -261,7 +260,6 @@ int	main(void)
 	TEST("%10.1f", -0.04);
 	TEST("%10.1Lf", 0.04l);
 	TEST("%10.1Lf", -0.04l);
-	TEST("%.15f", 454423.343242374423425);
 
 	for (int k = 0; src_code[k]; k++)
 		free(src_code[k]);
